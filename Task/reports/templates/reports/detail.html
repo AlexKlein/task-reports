@@ -1,0 +1,18 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'reports/style.css' %}" />
+
+<h1>{{ reports.title }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'reports:browsed' reports.id %}" method="post">
+{% csrf_token %}
+{% for text in reports.text_set.all %}
+    <input type="radio" name="text" id="text{{ forloop.counter }}" value="{{ text.id }}" />
+    <label for="text{{ forloop.counter }}">{{ text.reports_text }}</label><br />
+{% endfor %}
+<input type="submit" value="View statistic" />
+</form>
+
+<a href="{% url 'reports:index' %}">Look back</a>

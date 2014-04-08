@@ -17,12 +17,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'v%sji$6net(-wo0)=yv@)k&grg#o8oh5bms9k4q25hu*#e%5vr'
+SECRET_KEY = '4w8c89b2c%o9ego#f!t-@38d)um!6hkj9upox_az*6hg$l$*j9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 ALLOWED_HOSTS = []
 
@@ -36,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sorl.thumbnail',
+    'pytils',
+    'reports'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,7 +62,11 @@ WSGI_APPLICATION = 'Task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.Task'),
+        'USER': 'AlexKlein',
+        'PASSWORD': '123321',
+        'HOST': '127.0.0.1',
+        'PORT': '8000'
     }
 }
 
@@ -67,7 +75,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yekaterinburg'
 
 USE_I18N = True
 
