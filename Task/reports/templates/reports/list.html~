@@ -2,24 +2,31 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'reports/style.css' %}" />
 
-{% for reports in reports_list %}
+{% if reports_list %}
+     <ul>
+    {% for reports in reports_list %}
+        <li><a href="{% url 'reports:detail' reports.id %}">{{ reports.title }}</a></li>
+    {% endfor %}
+    {# .... **Now the pagination section** .... #}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/cars?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/reports/list/?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+ </ul>
 
-    {{ reports.title|upper }}<br />
-    ...
-{% endfor %}
+{% else %}
+    <p>No reports are available.</p>
+{% endif %}
 
-<div class="pagination">
-    <span class="step-links">
-        {% if contacts.has_previous %}
-            <a href="?page={{ contacts.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
-        </span>
-
-        {% if contacts.has_next %}
-            <a href="?page={{ contacts.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-</div>
+<a href="{% url 'reports:index' %}">Главная</a>

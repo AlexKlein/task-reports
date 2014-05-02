@@ -22,6 +22,7 @@ class ListView(generic.ListView):
     def get_queryset(self):
         return Reports.objects.filter(pub_date__lte=timezone.now())[:10]
     """
+    """
     def listing(request):
         reports_list = Reports.objects.all()
         paginator = Paginator(reports_list, 10)
@@ -35,6 +36,9 @@ class ListView(generic.ListView):
             reports = paginator.page(paginator.num_pages)
 
         return render_to_response('list.html', {"reports": reports})
+    """
+    context_object_name = "reports_list"    #default is object_list as well as model's_verbose_name_list and/or model's_verbose_name_plural_list, if defined in the model's inner Meta class
+    paginate_by = 10
 
 
 

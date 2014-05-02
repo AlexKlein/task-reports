@@ -7,23 +7,23 @@
     {% for reports in reports_list %}
         <li><a href="{% url 'reports:detail' reports.id %}">{{ reports.title }}</a></li>
     {% endfor %}
-
-<div class="pagination">
-    <span class="step-links">
-        {% if reports.has_previous %}
-            <a href="?page={{ reports.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ reports.number }} of {{ reports.paginator.num_pages }}.
-        </span>
-
-        {% if reports.has_next %}
-            <a href="?page={{ reports.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-</div>
-    </ul>
+    {# .... **Now the pagination section** .... #}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/reports/list/?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/reports/list/?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+ </ul>
 
 {% else %}
     <p>No reports are available.</p>
