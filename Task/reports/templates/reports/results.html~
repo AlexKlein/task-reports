@@ -1,13 +1,13 @@
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'news/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'reports/style.css' %}" />
 
-<h1>{{ news.title }}</h1>
+<h1>{{ reports.title }}</h1>
 
 <ul>
-{% for text in news.text_set.all %}
-    <li>{{ text.news_text }} -- {{ text.reads }} reads{{ text.reads|pluralize }}</li>
+{% for text in reports.text_set.all %}
+    <li>{{ text.reports_text }} -- {{ text.browsed }} browsed{{ text.browsed|pluralize }}</li>
 {% endfor %}
 </ul>
 
-<a href="{% url 'news:detail' news.id %}">Look back</a>
+<a href="{% url 'reports:detail' reports.id %}">Look back</a>

@@ -2,12 +2,13 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'reports/style.css' %}" />
 
-{% if latest_reports_list %}
+{% if reports_list %}
     <ul>
-    {% for reports in latest_reports_list %}
+    {% for reports in reports_list %}
         <li><a href="{% url 'reports:detail' reports.id %}">{{ reports.title }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No reports are available.</p>
 {% endif %}
+<a href="{% url 'reports:list' %}">Список статей</a>

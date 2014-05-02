@@ -1,13 +1,14 @@
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'news/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'reports/style.css' %}" />
 
-{% if latest_news_list %}
+{% if reports_list %}
     <ul>
-    {% for news in latest_news_list %}
-        <li><a href="{% url 'news:detail' news.id %}">{{ news.title }}</a></li>
+    {% for reports in reports_list %}
+        <li><a href="{% url 'reports:detail' reports.id %}">{{ reports.title }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No news are available.</p>
+    <p>No reports are available.</p>
 {% endif %}
+<a href="{% url 'reports:index' %}">Список статей</a>

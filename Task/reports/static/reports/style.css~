@@ -1,5 +1,5 @@
 li a {
-    color: black; text-align: center; font-size: 25;
+    color: green; text-align: center; font-size: 25;
 }
 
 body {

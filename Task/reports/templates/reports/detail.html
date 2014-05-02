@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'reports/style.css' %}" />
 
-<h1>{{ reports.title }}</h1>
+<h1>{{ reports.title }}</h1>   
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -15,4 +15,4 @@
 <input type="submit" value="View statistic" />
 </form>
 
-<a href="{% url 'reports:index' %}">Look back</a>
+<a href="{% url 'reports:index' %}">Назад</a>
